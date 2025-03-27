@@ -1,0 +1,178 @@
+{
+    "personal_information": {
+        "first_name": "Francisco",
+        "middle_name": "Manuel",
+        "last_name": "Mares Solano",
+        "full_name": "Francisco Manuel Mares Solano",
+        "preferred_name": "Manuel Mares",
+        "summary": "",
+        "website": "",
+        "languages": "",
+        "contact": {
+            "emails": [
+                "manuelms@nmsu.edu",
+                "fmms@outlook.com"
+            ],
+            "phone_numbers": [
+                "4237737734"
+            ],
+            "addresses": [
+                {
+                    "address": "507 Sweet Avenue",
+                    "postal_code": "88001",
+                    "country": "United States",
+                    "state": "New Mexico"
+                }
+            ]
+        }
+    },
+    "education": [
+        {
+            "degree": "Bachelors of Mechanical Engineering",
+            "institution": "Universidad Veracruzana",
+            "country": "Mexico",
+            "graduation_date": {
+                "year": "2018",
+                "month": "June",
+                "day": "",
+                "season": " Spring"
+            },
+            "grade": "4.0",
+            "description": "",
+            "is_completed": "true"
+        },
+        {
+            "degree": "Masters in Computer Science",
+            "institution": "New Mexico State University",
+            "country": "United States",
+            "graduation_date": {
+                "year": "2025",
+                "month": "May",
+                "day": "",
+                "season": " Spring"
+            },
+            "grade": "4.0",
+            "description": "",
+            "is_completed": "true"
+        },
+        {
+            "degree": "Google Tech-Exchange Program",
+            "institution": "Google",
+            "country": "United States",
+            "graduation_date": {
+                "year": "2023",
+                "month": "May",
+                "day": "",
+                "season": " Spring"
+            },
+            "grade": "4.0",
+            "description": "",
+            "is_completed": "true"
+        }
+    ],
+    "work_experience": [
+        {
+            "job_title": "Research Assistantship at NMSU",
+            "company": "New Mexico State University",
+            "start_date": {
+                "year": "2022",
+                "month": "May",
+                "day": "",
+                "season": " Fall"
+            },
+            "end_date": {
+                "year": "",
+                "month": "",
+                "day": "",
+                "season": " Fall"
+            },
+            "has_terminated": "false",
+            "responsibilities": [
+                "Working in a federally funded project researching Smart Grids aimed to help stablish a communication protocol for resilience of the grid.",
+                "Created an experimental Chrome extension in JS for developers to test different browser configurations."
+            ],
+            "achievements":[
+                ""
+            ],
+            "description":[
+
+            ],
+            "contact": {
+                "supervisor": ["Dr. Roopa Vishwanathan"],
+                "phone_number": [""],
+                "email": ""
+            }
+        }
+    ],
+    "certifications": [
+        {
+            "name": "",
+            "organization": "",
+            "location": "",
+            "description": "",
+            "date": {
+                "year": "",
+                "month": "",
+                "day": "",
+                "season": " "
+            }
+        }
+    ],
+    "hard_skills": [
+        {
+            "technologies": [],
+            "years_of_experience": ""
+        }
+    ],
+    "projects": {
+        "websites": [],
+        "summary": "",
+        "projects": [
+            {
+                "title": "",
+                "link": "",
+                "description": [
+                    ""
+                ],
+                "technologies": [
+                    ""
+                ],                
+                "date": {
+                    "year": "",
+                    "month": "",
+                    "day": "",
+                    "season": " "
+                }
+            }
+        ]
+    },
+    "publications": [
+        {
+            "title": "",
+            "reference": "",
+            "year": "",
+            "description": ""
+        }
+    ],
+    "references": [
+        {
+            "name": "",
+            "relationship": "",
+            "contact": ""
+        }
+    ],
+    "extracurricular": [
+        {
+            "title": "",
+            "description": [
+                ""
+            ],                
+            "date": {
+                "year": "",
+                "month": "",
+                "day": "",
+                "season": " "
+            }
+        }
+    ]
+}

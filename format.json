@@ -1,0 +1,148 @@
+{
+    "personal_information": {
+        "first_name": "",
+        "middle_name": "",
+        "last_name": "",
+        "full_name": "",
+        "preferred_name": "",
+        "summary": "",
+        "website": "",
+        "languages": "",
+        "contact": {
+            "emails": [
+                ""
+            ],
+            "phone_numbers": [
+                ""
+            ],
+            "addresses": [
+                {
+                    "address": "",
+                    "postal_code": "",
+                    "country": "",
+                    "state": "o"
+                }
+            ]
+        }
+    },
+    "education": [
+        {
+            "degree": "",
+            "institution": "",
+            "country": "",
+            "graduation_date": {
+                "year": "",
+                "month": "",
+                "day": "",
+                "season": ""
+            },
+            "grade": "",
+            "description": "",
+            "is_completed": ""
+        }
+    ],
+    "work_experience": [
+        {
+            "job_title": "",
+            "company": "",
+            "start_date": {
+                "year": "",
+                "month": "",
+                "day": "",
+                "season": " "
+            },
+            "end_date": {
+                "year": "",
+                "month": "",
+                "day": "",
+                "season": " "
+            },
+            "has_terminated": "false",
+            "responsibilities": [
+                ""
+            ],
+            "achievements":[
+                ""
+            ],
+            "description":[
+
+            ],
+            "contact": {
+                "supervisor": [""],
+                "phone_number": [""],
+                "emails": [""]
+            }
+        }
+    ],
+    "certifications": [
+        {
+            "name": "",
+            "organization": "",
+            "location": "",
+            "description": "",
+            "date": {
+                "year": "",
+                "month": "",
+                "day": "",
+                "season": " "
+            }
+        }
+    ],
+    "hard_skills": [
+        {
+            "technologies": [],
+            "years_of_experience": ""
+        }
+    ],
+    "projects": {
+        "websites": [],
+        "summary": "",
+        "projects": [
+            {
+                "title": "",
+                "link": "",
+                "description": [
+                    ""
+                ],
+                "technologies": [
+                    ""
+                ],                
+                "date": {
+                    "year": "",
+                    "month": "",
+                    "day": "",
+                    "season": " "
+                }
+            }
+        ]
+    },
+    "publications": [
+        {
+            "title": "",
+            "reference": "",
+            "year": "",
+            "description": ""
+        }
+    ],
+    "references": [
+        {
+            "name": "",
+            "relationship": "",
+            "contact": ""
+        }
+    ],
+    "extracurricular": [
+        {
+            "title": "",
+            "description": [
+                ""
+            ],                
+            "date": {
+                "year": "",
+                "month": "",
+                "day": "",
+                "season": " "
+            }
+        }
+    ]
+}
