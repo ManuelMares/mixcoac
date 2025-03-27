@@ -20,7 +20,7 @@
                     "address": "",
                     "postal_code": "",
                     "country": "",
-                    "state": "o"
+                    "state": ""
                 }
             ]
         }
@@ -49,15 +49,15 @@
                 "year": "",
                 "month": "",
                 "day": "",
-                "season": " "
+                "season": ""
             },
             "end_date": {
                 "year": "",
                 "month": "",
                 "day": "",
-                "season": " "
+                "season": ""
             },
-            "has_terminated": "false",
+            "has_terminated": "",
             "responsibilities": [
                 ""
             ],
@@ -84,7 +84,7 @@
                 "year": "",
                 "month": "",
                 "day": "",
-                "season": " "
+                "season": ""
             }
         }
     ],
@@ -111,7 +111,7 @@
                     "year": "",
                     "month": "",
                     "day": "",
-                    "season": " "
+                    "season": ""
                 }
             }
         ]
@@ -141,7 +141,7 @@
                 "year": "",
                 "month": "",
                 "day": "",
-                "season": " "
+                "season": ""
             }
         }
     ]
