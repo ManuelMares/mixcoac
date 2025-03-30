@@ -1,10 +1,12 @@
 {
     "personal_information": {
-        "first_name": "",
-        "middle_name": "",
-        "last_name": "",
-        "full_name": "",
-        "preferred_name": "",
+        "name":{
+            "first_name": "",
+            "middle_name": "",
+            "last_name": "",
+            "full_name": "",
+            "preferred_name": ""
+        },
         "summary": "",
         "website": "",
         "languages": "",
@@ -38,13 +40,14 @@
             },
             "grade": "",
             "description": "",
-            "is_completed": ""
+            "status": ""
         }
     ],
     "work_experience": [
         {
             "job_title": "",
             "company": "",
+            "status": "",
             "start_date": {
                 "year": "",
                 "month": "",
@@ -57,7 +60,6 @@
                 "day": "",
                 "season": ""
             },
-            "has_terminated": "",
             "responsibilities": [
                 ""
             ],
@@ -76,11 +78,18 @@
     ],
     "certifications": [
         {
-            "name": "",
+            "title": "",
             "organization": "",
             "location": "",
             "description": "",
-            "date": {
+            "status": "",
+            "start_date": {
+                "year": "",
+                "month": "",
+                "day": "",
+                "season": ""
+            },
+            "end_date": {
                 "year": "",
                 "month": "",
                 "day": "",

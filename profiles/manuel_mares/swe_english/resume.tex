@@ -1,0 +1,266 @@
+\documentclass[10pt,letterpaper]{article}%
+\usepackage[T1]{fontenc}%
+\usepackage[utf8]{inputenc}%
+\usepackage{lmodern}%
+\usepackage{textcomp}%
+\usepackage{lastpage}%
+\usepackage[ignoreheadfoot,top=2 cm,bottom=2 cm,left=2 cm,right=2 cm,footskip=1.0 cm]{geometry}%
+\usepackage{titlesec}%
+\usepackage{tabularx}%
+\usepackage{array}%
+\usepackage[dvipsnames]{xcolor}%
+\usepackage{enumitem}%
+\usepackage{fontawesome5}%
+\usepackage{amsmath}%
+\usepackage[pdftitle=\{Manuel Mares\},pdfauthor=\{Manuel Mares\},pdfcreator=\{Mixcoac\},colorlinks=true,urlcolor=primaryColor]{hyperref}%
+\usepackage[pscoord]{eso-pic}%
+\usepackage{calc}%
+\usepackage{bookmark}%
+\usepackage{changepage}%
+\usepackage{paracol}%
+\usepackage{ifthen}%
+\usepackage{needspace}%
+\usepackage{iftex}%
+%
+\definecolor{primaryColor}{RGB}{0, 79, 144}%
+
+\ifPDFTeX
+    \input{glyphtounicode}
+    \pdfgentounicode=1
+    % \usepackage[T1]{fontenc} % this breaks sb2nov
+    \usepackage[utf8]{inputenc}
+    \usepackage{lmodern}
+\fi
+%
+
+% Some settings:
+\AtBeginEnvironment{adjustwidth}{\partopsep0pt} % remove space before adjustwidth environment
+\pagestyle{empty} % no header or footer
+\setcounter{secnumdepth}{0} % no section numbering
+\setlength{\parindent}{0pt} % no indentation
+\setlength{\topskip}{0pt} % no top skip
+\setlength{\columnsep}{0cm} % set column separation
+\makeatletter
+\let\ps@customFooterStyle\ps@plain % Copy the plain style to customFooterStyle
+\patchcmd{\ps@customFooterStyle}{\thepage}{{
+    \color{gray}\textit{\small Manuel Mares - Page \thepage{} of \pageref*{LastPage}}
+}}{}{}
+\makeatother
+\pagestyle{customFooterStyle}
+
+\titleformat{\section}{\needspace{4\baselineskip}\bfseries\large}{}{0pt}{}[\vspace{1pt}\titlerule]
+
+\titlespacing{\section}{
+    % left space:
+    -1pt
+}{
+    % top space:
+    0.3 cm
+}{
+    % bottom space:
+    0.2 cm
+} % section title spacing
+
+\renewcommand\labelitemi{$\circ$} % custom bullet points
+\newenvironment{highlights}{
+    \begin{itemize}[
+        topsep=0.10 cm,
+        parsep=0.10 cm,
+        partopsep=0pt,
+        itemsep=0pt,
+        leftmargin=0.4 cm + 10pt
+    ]
+}{
+    \end{itemize}
+} % new environment for highlights
+
+\newenvironment{highlightsforbulletentries}{
+    \begin{itemize}[
+        topsep=0.10 cm,
+        parsep=0.10 cm,
+        partopsep=0pt,
+        itemsep=0pt,
+        leftmargin=10pt
+    ]
+}{
+    \end{itemize}
+} % new environment for highlights for bullet entries
+
+
+\newenvironment{onecolentry}{
+    \begin{adjustwidth}{
+        0.2 cm + 0.00001 cm
+    }{
+        0.2 cm + 0.00001 cm
+    }
+}{
+    \end{adjustwidth}
+} % new environment for one column entries
+
+\newenvironment{twocolentry}[2][]{
+    \onecolentry
+    \def\secondColumn{#2}
+    \setcolumnwidth{\fill, 4.5 cm}
+    \begin{paracol}{2}
+}{
+    \switchcolumn \raggedleft \secondColumn
+    \end{paracol}
+    \endonecolentry
+} % new environment for two column entries
+
+\newenvironment{header}{
+    \setlength{\topsep}{0pt}\par\kern\topsep\centering\linespread{1.5}
+}{
+    \par\kern\topsep
+} % new environment for the header
+
+\newcommand{\placelastupdatedtext}{% \placetextbox{<horizontal pos>}{<vertical pos>}{<stuff>}
+  \AddToShipoutPictureFG*{% Add <stuff> to current page foreground
+    \put(
+        \LenToUnit{\paperwidth-2 cm-0.2 cm+0.05cm},
+        \LenToUnit{\paperheight-1.0 cm}
+    ){\vtop{{\null}\makebox[0pt][c]{
+        \small\color{gray}\textit{Last updated in 2025-03-30 16:09:04}
+    }}}
+  }
+}%
+
+% save the original href command in a new command:
+\let\hrefWithoutArrow\href
+
+% new command for external links:
+\renewcommand{\href}[2]{\hrefWithoutArrow{#1}{\ifthenelse{\equal{#2}{}}{ }{#2 }\raisebox{.15ex}{\footnotesize \faExternalLink*}}}
+%
+%
+\begin{document}%
+\normalsize%
+
+    \newcommand{\AND}{\unskip
+        \cleaders\copy\ANDbox\hskip\wd\ANDbox
+        \ignorespaces
+    }
+    \newsavebox\ANDbox
+    \sbox\ANDbox{}
+    
+    \placelastupdatedtext
+    \begin{header}
+        \textbf{\fontsize{24 pt}{24 pt}\selectfont Manuel Mares}
+
+        \vspace{0.3 cm}
+
+        \normalsize
+        \mbox{{\color{black}\footnotesize\faMapMarker*}\hspace*{0.13cm}507 Sweet Avenue}
+        \kern 0.25 cm%
+        \AND%
+        \kern 0.25 cm%
+        \mbox{\hrefWithoutArrow{mailto:manuelms@nmsu.edu}{\color{black}{\footnotesize\faEnvelope[regular]}\hspace*{0.13cm}manuelms@nmsu.edu}}%
+        \kern 0.25 cm%
+        \AND%
+        \kern 0.25 cm%
+        \mbox{\hrefWithoutArrow{tel:4237737734}{\color{black}{\footnotesize\faPhone*}\hspace*{0.13cm}4237737734}}%
+        \kern 0.25 cm%
+        \AND%
+        \kern 0.25 cm%
+        \mbox{\hrefWithoutArrow{https://yourwebsite.com/}{\color{black}{\footnotesize\faLink}\hspace*{0.13cm}https://yourwebsite.com/}}%
+        \kern 0.25 cm%
+        \AND%
+        \kern 0.25 cm%
+        \mbox{\hrefWithoutArrow{https://linkedin.com/in/yourusername}{\color{black}{\footnotesize\faLinkedinIn}\hspace*{0.13cm}yourusername}}%
+        \kern 0.25 cm%
+        \AND%
+        \kern 0.25 cm%
+        \mbox{\hrefWithoutArrow{https://github.com/yourusername}{\color{black}{\footnotesize\faGithub}\hspace*{0.13cm}yourusername}}%
+    \end{header}
+
+    \vspace{0.3 cm - 0.3 cm}
+%
+\section{Education}%
+
+        \begin{twocolentry}{
+            \textit{Sept 2000 – May 2005}
+        }
+            \textbf{University of Pennsylvania}
+
+            \textit{BS in Computer Science}
+        \end{twocolentry}
+
+        \vspace{0.10 cm}
+
+        \begin{onecolentry}
+            \begin{highlights}
+                \item GPA: 3.9/4.0 (\href{https://example.com}{a link to somewhere})
+                \item \textbf{Coursework:} Computer Architecture, Comparison of Learning Algorithms, Computational Theory
+            \end{highlights}
+        \end{onecolentry}
+        %
+
+        \begin{twocolentry}{
+            \textit{Sept 2005 – May 2009}
+        }
+            \textbf{Harvard University}
+
+            \textit{MS in Artificial Intelligence}
+        \end{twocolentry}
+
+        \vspace{0.10 cm}
+
+        \begin{onecolentry}
+            \begin{highlights}
+                \item GPA: 4.0/4.0 (\href{https://anotherexample.com}{a link to somewhere})
+                \item \textbf{Coursework:} Machine Learning, Neural Networks, Advanced Algorithms
+            \end{highlights}
+        \end{onecolentry}
+        %
+\section{Experience}%
+
+    \begin{twocolentry}{
+        \textit{Cupertino, CA}
+        
+        \textit{June 2005 – Aug 2007}
+    }
+        \textbf{Software Engineer}
+        
+        \textit{Apple}
+    \end{twocolentry}
+
+    \vspace{0.10 cm}
+
+    \begin{onecolentry}
+        \begin{highlights}
+    %
+        \item Reduced time to render user buddy lists by 75\% by implementing a prediction algorithm %
+        \item Integrated iChat with Spotlight Search by creating a tool to extract metadata from saved chat transcripts and provide metadata to a system-wide search database %
+        \item Redesigned chat file format and implemented backward compatibility for search %
+
+        \end{highlights}
+    \end{onecolentry}
+
+    \vspace{0.2 cm}
+    %
+
+    \begin{twocolentry}{
+        \textit{Redmond, WA}
+        
+        \textit{June 2003 – Aug 2003}
+    }
+        \textbf{Software Engineer Intern}
+        
+        \textit{Microsoft}
+    \end{twocolentry}
+
+    \vspace{0.10 cm}
+
+    \begin{onecolentry}
+        \begin{highlights}
+    %
+        \item Designed a UI for the VS open file switcher (Ctrl-Tab) and extended it to tool windows %
+        \item Created a service to provide gradient across VS and VS add-ins, optimizing its performance via caching %
+        \item Created a test case generation tool that creates random XML docs from XML Schema %
+        \item Automated the extraction and processing of large datasets from legacy systems using SQL and Perl scripts %
+
+        \end{highlights}
+    \end{onecolentry}
+
+    \vspace{0.2 cm}
+    %
+\end{document}

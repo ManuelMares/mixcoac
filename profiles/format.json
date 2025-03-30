@@ -1,10 +1,12 @@
 {
     "personal_information": {
-        "first_name": "",
-        "middle_name": "",
-        "last_name": "",
-        "full_name": "",
-        "preferred_name": "",
+        "name":{
+            "first_name": "",
+            "middle_name": "",
+            "last_name": "",
+            "full_name": "",
+            "preferred_name": ""
+        },
         "summary": "",
         "website": "",
         "languages": "",
@@ -38,26 +40,26 @@
             },
             "grade": "",
             "description": "",
-            "is_completed": ""
+            "status": ""
         }
     ],
     "work_experience": [
         {
             "job_title": "",
             "company": "",
+            "status": "",
             "start_date": {
                 "year": "",
                 "month": "",
                 "day": "",
-                "season": " "
+                "season": ""
             },
             "end_date": {
                 "year": "",
                 "month": "",
                 "day": "",
-                "season": " "
+                "season": ""
             },
-            "has_terminated": "false",
             "responsibilities": [
                 ""
             ],
@@ -76,15 +78,22 @@
     ],
     "certifications": [
         {
-            "name": "",
+            "title": "",
             "organization": "",
             "location": "",
             "description": "",
-            "date": {
+            "status": "",
+            "start_date": {
                 "year": "",
                 "month": "",
                 "day": "",
-                "season": " "
+                "season": ""
+            },
+            "end_date": {
+                "year": "",
+                "month": "",
+                "day": "",
+                "season": ""
             }
         }
     ],
@@ -111,7 +120,7 @@
                     "year": "",
                     "month": "",
                     "day": "",
-                    "season": " "
+                    "season": ""
                 }
             }
         ]
@@ -141,7 +150,7 @@
                 "year": "",
                 "month": "",
                 "day": "",
-                "season": " "
+                "season": ""
             }
         }
     ]
