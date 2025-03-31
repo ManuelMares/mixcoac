@@ -1,0 +1,9 @@
+{
+    "manuel_mares": {
+        "json_file": "manuel_mares.json",
+        "versions": [
+            "swe_english",
+            "swe_spanish"
+        ]
+    }
+}

@@ -1,13 +1,31 @@
 {
     "personal_information": {
-        "first_name": "Francisco",
-        "middle_name": "Manuel",
-        "last_name": "Mares Solano",
-        "full_name": "Francisco Manuel Mares Solano",
-        "preferred_name": "Manuel Mares",
-        "summary": "",
+        "name":{
+            "first_name": "Francisco",
+            "middle_name": "Manuel",
+            "last_name": "Mares Solano",
+            "full_name": "Francisco Manuel Mares Solano",
+            "preferred_name": "Manuel Mares"
+        },        
+        "links": [
+            {
+                "name": "personalWebsite",
+                "link": "manuelmares-108fc.web.app",
+                "icon": "Link"
+            },
+            {
+                "name": "github",
+                "link": "https://github.com/ManuelMares",
+                "icon": "Github"
+            },
+            {
+                "name": "linkedin",
+                "link": "https://www.linkedin.com/in/francisco-manuel-mares-solano-124754122/",
+                "icon": "LinkedinIn"
+            }
+        ],
         "website": "",
-        "languages": "",
+        "languages": [],
         "contact": {
             "emails": [
                 "manuelms@nmsu.edu",

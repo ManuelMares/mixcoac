@@ -8,8 +8,24 @@
             "preferred_name": ""
         },
         "summary": "",
-        "website": "",
-        "languages": "",
+        "links": [
+            {
+                "name": "personalWebsite",
+                "link": "personalWebsite.com",
+                "icon": ""
+            },
+            {
+                "name": "github",
+                "link": "github.com",
+                "icon": ""
+            },
+            {
+                "name": "linkedin",
+                "link": "linkedin.com",
+                "icon": ""
+            }
+        ],
+        "languages": [],
         "contact": {
             "emails": [
                 ""

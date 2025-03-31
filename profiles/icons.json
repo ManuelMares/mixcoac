@@ -1,0 +1,22 @@
+[
+    {
+        "name": "envelope",
+        "icon": "Envelope[regular]"
+    },        
+    {
+        "name": "phone",
+        "icon": "Phone"
+    },
+    {
+        "name": "link",
+        "icon": "Link"
+    },
+    {
+        "name": "linkedinIn",
+        "icon": "LinkedinIn"
+    },
+    {
+        "name": "github",
+        "icon": "Github"
+    }
+]

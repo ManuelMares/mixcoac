@@ -6,9 +6,6 @@ from datetime import datetime
 import subprocess
 
 # Meta data variables
-pdf_title = "Manuel Mares"
-pdf_author = "Manuel Mares"
-pdf_creator = "Mixcoac"
 url_color = "primaryColor"
 today=datetime.today()
 
@@ -72,7 +69,46 @@ jobs = [
 ]
 
 
-def addEducation(doc): # Add the Education section title
+def add_header(doc, personal_information): # Add content to the document body
+    doc.append(NoEscape(r"""
+    \newcommand{\AND}{\unskip
+        \cleaders\copy\ANDbox\hskip\wd\ANDbox
+        \ignorespaces
+    }
+    \newsavebox\ANDbox
+    \sbox\ANDbox{}
+    
+    \placelastupdatedtext
+    \begin{header}
+        \textbf{\fontsize{24 pt}{24 pt}\selectfont """ + personal_information["name"]["preferred_name"] + r"""}
+
+        \vspace{0.3 cm}
+
+        \normalsize
+        \mbox{{\color{black}\footnotesize\faMapMarker*}\hspace*{0.13cm}""" + format_date(personal_information["contact"]["addresses"][0]) + r"""}
+        \kern 0.25 cm%
+        \AND%
+        \kern 0.25 cm%
+        \mbox{\hrefWithoutArrow{mailto:""" + personal_information["contact"]["emails"][0] + r"""}{\color{black}{\footnotesize\faEnvelope[regular]}\hspace*{0.13cm}""" + personal_information["contact"]["emails"][0] + r"""}}%
+        \kern 0.25 cm%
+        \AND%
+        \kern 0.25 cm%
+        \mbox{\hrefWithoutArrow{tel:""" + personal_information["contact"]["phone_numbers"][0] + r"""}{\color{black}{\footnotesize\faPhone*}\hspace*{0.13cm}""" + personal_information["contact"]["phone_numbers"][0] + r"""}}"""))
+    for link in personal_information["links"]:
+        link_name = link["name"]
+        link_link = link["link"]
+        link_icon = link["icon"]
+        doc.append(NoEscape(r"""\kern 0.25 cm%
+            \AND
+            \kern 0.25 cm%
+            \mbox{\hrefWithoutArrow{""" + link_link + r"""}{\color{black}{\footnotesize\fa""" + link_icon + r"""}\hspace*{0.13cm}""" + link_name + r"""}}"""))
+
+    doc.append(NoEscape(r"""\end{header}
+    \vspace{0.3 cm - 0.3 cm}
+    """))
+
+
+def add_education(doc): # Add the Education section title
     doc.append(NoEscape(r"\section{Education}"))
 
     # Loop through the universities and append their information
@@ -130,57 +166,7 @@ def add_experience(doc): # Add the Experience section title
     \vspace{0.2 cm}
     """))
 
-
-def generate_latex_with_pylatex(profile_json, version_path, profile_name, version_name):
-    # Create a LaTeX document with specified options
-    doc = Document(documentclass="article", document_options=["10pt", "letterpaper"])
-
-    # Add required packages and their options
-    doc.packages.append(Package('geometry', options=[
-        'ignoreheadfoot',
-        'top=2 cm',
-        'bottom=2 cm',
-        'left=2 cm',
-        'right=2 cm',
-        'footskip=1.0 cm'
-    ]))
-    doc.packages.append(Package(NoEscape('titlesec')))
-    doc.packages.append(Package(NoEscape('tabularx')))
-    doc.packages.append(Package(NoEscape('array')))
-    doc.packages.append(Package('xcolor', options='dvipsnames'))
-    doc.preamble.append(NoEscape(r'\definecolor{primaryColor}{RGB}{0, 79, 144}'))
-    doc.packages.append(Package(NoEscape('enumitem')))
-    doc.packages.append(Package(NoEscape('fontawesome5')))
-    doc.packages.append(Package(NoEscape('amsmath')))
-    doc.packages.append(Package('hyperref', options=[       # These variables are user's names
-        f'pdftitle={{{pdf_title}}}',
-        f'pdfauthor={{{pdf_author}}}',
-        f'pdfcreator={{{pdf_creator}}}',
-        'colorlinks=true',
-        f'urlcolor={url_color}'
-    ]))
-    doc.packages.append(Package(NoEscape('eso-pic'), options='pscoord'))
-    doc.packages.append(Package(NoEscape('calc')))
-    doc.packages.append(Package(NoEscape('bookmark')))
-    doc.packages.append(Package(NoEscape('lastpage')))
-    doc.packages.append(Package(NoEscape('changepage')))
-    doc.packages.append(Package(NoEscape('paracol')))
-    doc.packages.append(Package(NoEscape('ifthen')))
-    doc.packages.append(Package(NoEscape('needspace')))
-    doc.packages.append(Package(NoEscape('iftex')))
-
-    # Add conditional preamble for pdflatex
-    doc.preamble.append(NoEscape(r"""
-\ifPDFTeX
-    \input{glyphtounicode}
-    \pdfgentounicode=1
-    % \usepackage[T1]{fontenc} % this breaks sb2nov
-    \usepackage[utf8]{inputenc}
-    \usepackage{lmodern}
-\fi
-"""))
-
-
+def add_document_settings(doc, personal_information, today):
     doc.preamble.append(NoEscape(r"""
 % Some settings:
 \AtBeginEnvironment{adjustwidth}{\partopsep0pt} % remove space before adjustwidth environment
@@ -192,7 +178,7 @@ def generate_latex_with_pylatex(profile_json, version_path, profile_name, versio
 \makeatletter
 \let\ps@customFooterStyle\ps@plain % Copy the plain style to customFooterStyle
 \patchcmd{\ps@customFooterStyle}{\thepage}{{
-    \color{gray}\textit{\small """ + pdf_author + r""" - Page \thepage{} of \pageref*{LastPage}}
+    \color{gray}\textit{\small """ + personal_information["name"]["preferred_name"] + r""" - Page \thepage{} of \pageref*{LastPage}}
 }}{}{}
 \makeatother
 \pagestyle{customFooterStyle}
@@ -269,7 +255,7 @@ def generate_latex_with_pylatex(profile_json, version_path, profile_name, versio
         \LenToUnit{\paperwidth-2 cm-0.2 cm+0.05cm},
         \LenToUnit{\paperheight-1.0 cm}
     ){\vtop{{\null}\makebox[0pt][c]{
-        \small\color{gray}\textit{Last updated in """ + today.strftime("%Y-%m-%d %H:%M:%S") + r"""}
+        \small\color{gray}\textit{Last updated in """ + today + r"""}
     }}}
   }
 }%
@@ -280,77 +266,70 @@ def generate_latex_with_pylatex(profile_json, version_path, profile_name, versio
 % new command for external links:
 \renewcommand{\href}[2]{\hrefWithoutArrow{#1}{\ifthenelse{\equal{#2}{}}{ }{#2 }\raisebox{.15ex}{\footnotesize \faExternalLink*}}}
 """))
-
-
-
-
-
-    # Add content to the document body
-    doc.append(NoEscape(r"""
-    \newcommand{\AND}{\unskip
-        \cleaders\copy\ANDbox\hskip\wd\ANDbox
-        \ignorespaces
-    }
-    \newsavebox\ANDbox
-    \sbox\ANDbox{}
     
-    \placelastupdatedtext
-    \begin{header}
-        \textbf{\fontsize{24 pt}{24 pt}\selectfont """ + name + r"""}
+def add_packages(doc, personal_information):
+    doc.packages.append(Package('geometry', options=[
+        'ignoreheadfoot',
+        'top=2 cm',
+        'bottom=2 cm',
+        'left=2 cm',
+        'right=2 cm',
+        'footskip=1.0 cm'
+    ]))
+    doc.packages.append(Package(NoEscape('titlesec')))
+    doc.packages.append(Package(NoEscape('tabularx')))
+    doc.packages.append(Package(NoEscape('array')))
+    doc.packages.append(Package('xcolor', options='dvipsnames'))
+    doc.preamble.append(NoEscape(r'\definecolor{primaryColor}{RGB}{0, 79, 144}'))
+    doc.packages.append(Package(NoEscape('enumitem')))
+    doc.packages.append(Package(NoEscape('fontawesome5')))
+    doc.packages.append(Package(NoEscape('amsmath')))
+    doc.packages.append(Package('hyperref', options=[       # These variables are user's names
+        f'pdftitle={{{personal_information["name"]["preferred_name"]}}}',
+        f'pdfauthor={{{personal_information["name"]["preferred_name"]}}}',
+        f'pdfcreator={{{personal_information["name"]["preferred_name"]}}}',
+        'colorlinks=true',
+        f'urlcolor={url_color}'
+    ]))
+    doc.packages.append(Package(NoEscape('eso-pic'), options='pscoord'))
+    doc.packages.append(Package(NoEscape('calc')))
+    doc.packages.append(Package(NoEscape('bookmark')))
+    doc.packages.append(Package(NoEscape('lastpage')))
+    doc.packages.append(Package(NoEscape('changepage')))
+    doc.packages.append(Package(NoEscape('paracol')))
+    doc.packages.append(Package(NoEscape('ifthen')))
+    doc.packages.append(Package(NoEscape('needspace')))
+    doc.packages.append(Package(NoEscape('iftex')))
 
-        \vspace{0.3 cm}
 
-        \normalsize
-        \mbox{{\color{black}\footnotesize\faMapMarker*}\hspace*{0.13cm}""" + location + r"""}
-        \kern 0.25 cm%
-        \AND%
-        \kern 0.25 cm%
-        \mbox{\hrefWithoutArrow{mailto:""" + email + r"""}{\color{black}{\footnotesize\faEnvelope[regular]}\hspace*{0.13cm}""" + email + r"""}}%
-        \kern 0.25 cm%
-        \AND%
-        \kern 0.25 cm%
-        \mbox{\hrefWithoutArrow{tel:""" + phone_number + r"""}{\color{black}{\footnotesize\faPhone*}\hspace*{0.13cm}""" + phone_number.replace('+', '').replace('-', ' ') + r"""}}%
-        \kern 0.25 cm%
-        \AND%
-        \kern 0.25 cm%
-        \mbox{\hrefWithoutArrow{""" + website + r"""}{\color{black}{\footnotesize\faLink}\hspace*{0.13cm}""" + website + r"""}}%
-        \kern 0.25 cm%
-        \AND%
-        \kern 0.25 cm%
-        \mbox{\hrefWithoutArrow{""" + linkedin + r"""}{\color{black}{\footnotesize\faLinkedinIn}\hspace*{0.13cm}""" + linkedin.split('/')[-1] + r"""}}%
-        \kern 0.25 cm%
-        \AND%
-        \kern 0.25 cm%
-        \mbox{\hrefWithoutArrow{""" + github + r"""}{\color{black}{\footnotesize\faGithub}\hspace*{0.13cm}""" + github.split('/')[-1] + r"""}}%
-    \end{header}
-
-    \vspace{0.3 cm - 0.3 cm}
+def enable_ATS(doc):
+    doc.preamble.append(NoEscape(r"""
+\ifPDFTeX
+    \input{glyphtounicode}
+    \pdfgentounicode=1
+    % \usepackage[T1]{fontenc} % this breaks sb2nov
+    \usepackage[utf8]{inputenc}
+    \usepackage{lmodern}
+\fi
 """))
-
-
-
-    addEducation(doc)
-    add_experience(doc)
+    
 
 
 
 
 
 
+# -----------------------------------------------------------------------------------
+# format fields
+def format_date(address):
+    print(address)
+    return f"{address["address"]}, {address["postal_code"]}, {address["state"]}"
+# -----------------------------------------------------------------------------------
 
-
-
-
-
-
-
-
-
-
-    # Generate the LaTeX file
-    tex_file_dir = version_path + "/resume"
+def produce_tex(doc, tex_file_dir, version_path, profile_name, version_name):
     doc.generate_tex(tex_file_dir)
 
+def produce_pdf(doc, tex_file_dir, version_path, profile_name, version_name):
     try:
         subprocess.run(["pdflatex", "-output-directory", version_path, f"-jobname={profile_name}_{version_name}", tex_file_dir], check=True)
         print(f"PDF successfully created for {tex_file_dir}.")
@@ -360,29 +339,40 @@ def generate_latex_with_pylatex(profile_json, version_path, profile_name, versio
         print("pdflatex not found. Make sure LaTeX is installed and added to your PATH.")
 
 
+def generate_latex_with_pylatex(profile_json, version_path, profile_name, version_name):
+    # Create a LaTeX document with specified options
+    doc = Document(documentclass="article", document_options=["10pt", "letterpaper"])
+    today_date = today
+    today_formatted = today.strftime("%Y-%m-%d %H:%M:%S")
 
+    # preambles
+    add_packages(doc, profile_json["personal_information"])
+    enable_ATS(doc)
+    add_document_settings(doc, profile_json["personal_information"], today_formatted)
+
+    # document content
+    add_header(doc, profile_json["personal_information"])
+    add_education(doc)
+    add_experience(doc)
 
     
-    # doc.generate_pdf('resume', clean_tex=False, compiler='pdflatex')
-    # subprocess.run([compiler, tex_filename], check=True)
+    tex_file_dir = version_path + "/resume"
+    produce_tex(doc, tex_file_dir, version_path, profile_name, version_name)
+    produce_pdf(doc, tex_file_dir, version_path, profile_name, version_name)
 
-    # print(f"LaTeX file '{output_filename}' has been created.")
 
 
 # Call the function to create the file
 
-profiles = {
-    "manuel_mares": {
-        "json_file": "manuel_mares.json",
-        "versions": [
-            "swe_english",
-            "swe_spanish",
-        ]
-    }
-}
 
+def load_json(path):
+    with open(path, 'r') as file:
+        data = json.load(file)
+    return data
 
 def main():
+    profiles_data = load_json('.\profiles\profiles.json')
+    
     profile_name = "manuel_mares"
     version_name = "swe_english"
     profiles_path= "./profiles" 
@@ -391,7 +381,12 @@ def main():
     profile_json = profiles_path + "/" + profile_name + "/" + profile_name + ".json"
     version_path = profiles_path + "/" + profile_name + "/" + version_name
 
-    generate_latex_with_pylatex(profile_json=profile_json, version_path=version_path, profile_name=profile_name, version_name=version_name)
+    
+    manuel_mares_json = load_json(profile_json)
+    print(manuel_mares_json["personal_information"])
+
+    
+    generate_latex_with_pylatex(profile_json=manuel_mares_json, version_path=version_path, profile_name=profile_name, version_name=version_name)
 
 if __name__ == "__main__":
     main()
