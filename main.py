@@ -9,68 +9,51 @@ import subprocess
 url_color = "primaryColor"
 today=datetime.today()
 
-# Header variables
-name = "Manuel Mares"
-location = "507 Sweet Avenue"
-email = "manuelms@nmsu.edu"
-phone_number = "4237737734"
-website = "https://yourwebsite.com/"
-linkedin = "https://linkedin.com/in/yourusername"
-github = "https://github.com/yourusername"
-last_updated_text = f"Last updated in {today}"
+
+# personal data settings
+_DATE_FORMAT = "month year"
+_ADDRESS_FORMAT = "state, country"
+show_addresses = [0]
+show_links = [0,1,2]
+show_emails = [0]
+show_phones = [0]
+name_format = "last, Middle_initial. first"
+header_order = ["address", "email", "phone", "links"]
 
 
-# Education variables
-universities = [
-    {
-        "dates": "Sept 2000 – May 2005",
-        "name": "University of Pennsylvania",
-        "degree": "BS in Computer Science",
-        "gpa": "3.9/4.0",
-        "link": "https://example.com",
-        "coursework": "Computer Architecture, Comparison of Learning Algorithms, Computational Theory"
-    },
-    {
-        "dates": "Sept 2005 – May 2009",
-        "name": "Harvard University",
-        "degree": "MS in Artificial Intelligence",
-        "gpa": "4.0/4.0",
-        "link": "https://anotherexample.com",
-        "coursework": "Machine Learning, Neural Networks, Advanced Algorithms"
-    }
-]
-
-
-# Experience
-jobs = [
-    {
-        "location": "Cupertino, CA",
-        "dates": "June 2005 – Aug 2007",
-        "title": "Software Engineer",
-        "company": "Apple",
-        "highlights": [
-            "Reduced time to render user buddy lists by 75\\% by implementing a prediction algorithm",
-            "Integrated iChat with Spotlight Search by creating a tool to extract metadata from saved chat transcripts and provide metadata to a system-wide search database",
-            "Redesigned chat file format and implemented backward compatibility for search"
+show_education = [2,1,0]
+show_education_date = False
+show_education_data = { # each element is a line
+    "left_lines" : [ #  [[line1_item1, line1_item2, line1, item3, ...],  [line2_item1,...]]
+        [ # line 1
+            {
+                "text": "institution",
+                "bold": True,
+                "italics": False
+            }
+        ], 
+        [ # line 2
+            {
+                "text": "degree",
+                "bold": False,
+                "italics": True
+            }
         ]
-    },
-    {
-        "location": "Redmond, WA",
-        "dates": "June 2003 – Aug 2003",
-        "title": "Software Engineer Intern",
-        "company": "Microsoft",
-        "highlights": [
-            "Designed a UI for the VS open file switcher (Ctrl-Tab) and extended it to tool windows",
-            "Created a service to provide gradient across VS and VS add-ins, optimizing its performance via caching",
-            "Created a test case generation tool that creates random XML docs from XML Schema",
-            "Automated the extraction and processing of large datasets from legacy systems using SQL and Perl scripts"
+    ],
+    "right_lines" : [ #  [[line1_item1, line1_item2, line1, item3, ...],  [line2_item1,...]]
+        [
+            {
+                "text": "graduation_date",
+                "bold": False,
+                "italics": False,
+            }
         ]
-    }
-]
+    ]
+}
 
 
 def add_header(doc, personal_information): # Add content to the document body
-    doc.append(NoEscape(r"""
+    doc.append(NoEscape(r""" 
     \newcommand{\AND}{\unskip
         \cleaders\copy\ANDbox\hskip\wd\ANDbox
         \ignorespaces
@@ -80,91 +63,340 @@ def add_header(doc, personal_information): # Add content to the document body
     
     \placelastupdatedtext
     \begin{header}
-        \textbf{\fontsize{24 pt}{24 pt}\selectfont """ + personal_information["name"]["preferred_name"] + r"""}
+        \textbf{\fontsize{24 pt}{24 pt}\selectfont """ + format_name(personal_information["name"], name_format) + r"""}
 
         \vspace{0.3 cm}
 
-        \normalsize
-        \mbox{{\color{black}\footnotesize\faMapMarker*}\hspace*{0.13cm}""" + format_date(personal_information["contact"]["addresses"][0]) + r"""}
-        \kern 0.25 cm%
-        \AND%
-        \kern 0.25 cm%
-        \mbox{\hrefWithoutArrow{mailto:""" + personal_information["contact"]["emails"][0] + r"""}{\color{black}{\footnotesize\faEnvelope[regular]}\hspace*{0.13cm}""" + personal_information["contact"]["emails"][0] + r"""}}%
-        \kern 0.25 cm%
-        \AND%
-        \kern 0.25 cm%
-        \mbox{\hrefWithoutArrow{tel:""" + personal_information["contact"]["phone_numbers"][0] + r"""}{\color{black}{\footnotesize\faPhone*}\hspace*{0.13cm}""" + personal_information["contact"]["phone_numbers"][0] + r"""}}"""))
-    for link in personal_information["links"]:
-        link_name = link["name"]
-        link_link = link["link"]
-        link_icon = link["icon"]
-        doc.append(NoEscape(r"""\kern 0.25 cm%
-            \AND
-            \kern 0.25 cm%
-            \mbox{\hrefWithoutArrow{""" + link_link + r"""}{\color{black}{\footnotesize\fa""" + link_icon + r"""}\hspace*{0.13cm}""" + link_name + r"""}}"""))
+        \normalsize"""))
+
+    # show addresses
+    listedElements_counter = 0
+
+    for element in header_order:
+        if element == "address":
+            for addressIndex in show_addresses:
+                try:
+                    address = personal_information["contact"]["addresses"][addressIndex]
+
+                    if listedElements_counter > 0:
+                        doc.append(NoEscape(r"""\AND"""))
+
+                    doc.append(NoEscape(r"""\mbox{{\color{black}\footnotesize\faMapMarker*}\hspace*{0.13cm} """ 
+                    + 
+                        format_address(address, _ADDRESS_FORMAT) 
+                    + 
+                    r"""} % New Address
+                    \kern 0.25 cm %"""))
+                    listedElements_counter += 1
+                except:
+                    continue
+
+        if element == "email":
+            # show emails
+            for emailIndex in show_emails:
+                try:
+                    email = personal_information["contact"]["emails"][emailIndex]
+
+                    if listedElements_counter > 0:
+                        doc.append(NoEscape(r"""\AND"""))
+
+                    doc.append(NoEscape(r"""\mbox{\hrefWithoutArrow{mailto:""" 
+                    + 
+                        email
+                    + 
+                    r"""}{\color{black}{\footnotesize\faEnvelope[regular]}\hspace*{0.13cm}"""
+                    + 
+                        email
+                    + 
+                    r"""}} % New email
+                    \kern 0.25 cm %"""))
+                    listedElements_counter += 1
+                except:
+                    continue
+
+        if element == "phone":
+            # show phone numbers
+            for phoneIndex in show_phones:
+                try:
+                    phone = personal_information["contact"]["phone_numbers"][phoneIndex]
+
+                    if listedElements_counter > 0:
+                        doc.append(NoEscape(r"""\AND"""))
+
+                    doc.append(NoEscape(r"""\mbox{\hrefWithoutArrow{tel:"""
+                    + 
+                        phone 
+                    + 
+                    r"""}{\color{black}{\footnotesize\faPhone*}\hspace*{0.13cm}"""
+                    + 
+                        phone 
+                    + 
+                    r"""}} % New phone number
+                    \kern 0.25 cm %"""))
+                    listedElements_counter += 1
+                except:
+                    continue
+
+        if element == "links":
+            # show links
+            for linkIndex in show_links:
+                try:
+                    link =  personal_information["links"][linkIndex]
+                    link_name = link["name"]
+                    link_link = link["link"]
+                    link_icon = link["icon"]
+                    
+                    if listedElements_counter > 0:
+                        doc.append(NoEscape(r"""\AND"""))
+
+                    doc.append(NoEscape(r"""\kern 0.25 cm%
+                        \mbox{\hrefWithoutArrow{""" + link_link + r"""}{\color{black}{\footnotesize\fa""" + link_icon + r"""}\hspace*{0.13cm}""" + link_name + r"""}} % new link
+                        \kern 0.25 cm%"""))        
+                except:
+                    continue
 
     doc.append(NoEscape(r"""\end{header}
-    \vspace{0.3 cm - 0.3 cm}
-    """))
+    \vspace{0.3 cm - 0.3 cm}    
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"""))
 
 
-def add_education(doc): # Add the Education section title
-    doc.append(NoEscape(r"\section{Education}"))
+def add_education(doc, education, section_Name): # Add the Education section title
+    add_new_section(doc, section_Name)
 
     # Loop through the universities and append their information
-    for uni in universities:
-        doc.append(NoEscape(r"""
-        \begin{twocolentry}{
-            \textit{""" + uni["dates"] + r"""}
-        }
-            \textbf{""" + uni["name"] + r"""}
+    for degreeIndex in show_education:
+        degree = education[degreeIndex]
+        doc.append(NoEscape(r"""    %---- New """ + section_Name + r"""----"""))
 
-            \textit{""" + uni["degree"] + r"""}
-        \end{twocolentry}
+        # adding right side lines
+        right_lines = show_education_data["right_lines"]
+        if len(right_lines) > 0:
+            doc.append(NoEscape(r"""    \begin{twocolentry}{ % start of double columns new """ + section_Name))
+        else:
+            doc.append(NoEscape(r"""    \begin{onecolentry} % start of single column new """ + section_Name))
 
-        \vspace{0.10 cm}
+        num_lines = len(show_education_data["right_lines"])
+        counter = 1
+        for rl in right_lines: # for each line
+            formatted_text = "        " # guarantees all items are within same line
+            num_items = len(rl)
+            counter_items = 1
+            for item in rl: # for each element in same line                        
+                # open text styles
+                if item["bold"]:
+                    formatted_text += r"""\textbf{"""
+                if item["italics"]:
+                    formatted_text += r"""\textit{"""
+                
+                # add item
+                item_text = item["text"]
+                item_content = degree[item_text]
+                if type(item_content) is list: # checking if element are bullet points
+                    if len(item_content) > 0: #only if not empty list
+                        formatted_text += r"\begin{highlights} % start bullet points"
+                        formatted_text += "\n"
+                        for bp in item_content:
+                            formatted_text += r"            \item " + bp 
+                            formatted_text += "\n"
+                        formatted_text += r"        \end{highlights} % end bullet points"
+                else:
+                    if "date" in item_text:
+                        formatted_text += format_date(date=item_content, format=_DATE_FORMAT)
+                    else:
+                        formatted_text += item_content
 
-        \begin{onecolentry}
-            \begin{highlights}
-                \item GPA: """ + uni["gpa"] + r""" (\href{""" + uni["link"] + r"""}{a link to somewhere})
-                \item \textbf{Coursework:} """ + uni["coursework"] + r"""
-            \end{highlights}
-        \end{onecolentry}
-        """))
+                # close text styles
+                if item["bold"]:
+                    formatted_text += r"""}"""
+                if item["italics"]:
+                    formatted_text += r"""}"""
+
+                # adding space between items
+                if counter_items < num_items:
+                    formatted_text += r""", """
+                counter_items += 1
+
+            # adding a new line for all lines except last one
+            if counter < num_lines:
+                if type(degree[show_education_data["right_lines"][counter][0]["text"]]) is list: # if next line (its first element) is bullet points, omit line jump
+                    doc.append(NoEscape(formatted_text)) 
+                else: 
+                    doc.append(NoEscape(formatted_text + r""" \\ """)) 
+            else:
+                if not formatted_text == "        ":
+                    doc.append(NoEscape(formatted_text)) 
+            counter += 1
+        if len(right_lines) > 0:
+            doc.append(NoEscape(r"""    } % end right column in double column new """ + section_Name))
+
+        # adding left side lines
+        num_lines = len(show_education_data["left_lines"])
+        counter = 1
+        for ll in show_education_data["left_lines"]: # for each line
+            formatted_text = "        " # guarantees all items are within same line
+            num_items = len(ll)
+            counter_items = 1
+            for item in ll: # for each element in same line
+                # open text styles
+                if item["bold"]:
+                    formatted_text += r"""\textbf{"""
+                if item["italics"]:
+                    formatted_text += r"""\textit{"""
+                
+                # add item
+                item_text = item["text"]
+                item_content = degree[item_text]
+                if type(item_content) is list: # checking if element are bullet points
+                    if len(item_content) > 0: #only if not empty list
+                        formatted_text += r"\begin{highlights} % start bullet points"
+                        formatted_text += "\n"
+                        for bp in item_content:
+                            formatted_text += r"            \item " + bp 
+                            formatted_text += "\n"
+                        formatted_text += r"        \end{highlights} % end bullet points"
+                else:
+                    if "date" in item_text:
+                        formatted_text += format_date(date=item_content, format=_DATE_FORMAT)
+                    else:
+                        formatted_text += item_content
+
+                # close text styles
+                if item["bold"]:
+                    formatted_text += r"""}"""
+                if item["italics"]:
+                    formatted_text += r"""}"""
+                    
+                # adding space between items
+                if counter_items < num_items:
+                    formatted_text += r""", """
+                counter_items += 1
 
 
-def add_experience(doc): # Add the Experience section title
-    doc.append(NoEscape(r"\section{Experience}"))
+            # adding a new line for all lines except last one
+            if counter < num_lines:
+                if type(degree[show_education_data["left_lines"][counter][0]["text"]]) is list: # if next line (its first element) is bullet points, omit line jump
+                    doc.append(NoEscape(formatted_text)) 
+                else: 
+                    doc.append(NoEscape(formatted_text + r""" \\ """)) 
+            else:
+                if not formatted_text == "        ":
+                    doc.append(NoEscape(formatted_text)) 
+            counter += 1
+
+
+        if len(right_lines) > 0:
+            doc.append(NoEscape(r"""    \end{twocolentry} % end of double column new """ + section_Name))
+        else:
+            doc.append(NoEscape(r"""    \end{onecolentry} % end of single column new """ + section_Name))
+        doc.append(NoEscape(r"""    \vspace{0.10 cm}"""))
+
+
+
+
+
+        # # adding left side lines
+        # for ll in show_education_data["left_lines"]:
+        #     ll_texts = ll["text"]
+        #     ll_isBold = ll["bold"]
+        #     doc.append(NoEscape(r"""\textit{""" + degree=[ll] + r"""}"""))            
+
+        # \end{twocolentry}"""))
+
+        # # description
+        # if len(degree["description"]) > 0: # add bullet points if any available
+        #     doc.append(NoEscape(r"""\begin{onecolentry}
+        #     \begin{highlights}"""))                                 # open bullet points
+        #     for bulletPoint in degree["description"]:           
+        #         doc.append(NoEscape(r"""\item """ + bulletPoint))     # bullet point              
+        #     doc.append(NoEscape(r"""\end{highlights}    
+        #     \end{onecolentry}"""))                                  # close bullet points
+        # doc.append(NoEscape(r"""\vspace{0.10 cm}"""))
+
+
+
+
+def add_experience(doc, experience): # Add the Experience section title
+    add_new_section(doc, "Experience")
 
     # Loop through the jobs and append their information
-    for job in jobs:
-        doc.append(NoEscape(r"""
-    \begin{twocolentry}{
+    for job in experience:
+        start_date = format_date(date=job["start_date"], format=_DATE_FORMAT, )
+        en_date = format_date(date=job["end_date"], format=_DATE_FORMAT, status=job["end_date"]["status"])
+        doc.append(NoEscape(r""" \begin{twocolentry}{ % new job
         \textit{""" + job["location"] + r"""}
         
-        \textit{""" + job["dates"] + r"""}
+        \textit{""" + start_date + " - " + en_date + r"""}
     }
-        \textbf{""" + job["title"] + r"""}
+        \textbf{""" + job["job_title"] + r"""}
         
         \textit{""" + job["company"] + r"""}
     \end{twocolentry}
+    \vspace{0.10 cm}"""))
+    
+    if len(job["responsibilities"]) > 0: # add bullet points if any available
+            responsibilities = job["responsibilities"]
+            doc.append(NoEscape(r"""\begin{onecolentry} % responsibilities
+            \begin{highlights}"""))                                 # open bullet points
+            for bulletPoint in responsibilities:           
+                doc.append(NoEscape(r"""\item """ + bulletPoint))     # bullet point              
+            doc.append(NoEscape(r"""\end{highlights}    
+            \end{onecolentry}"""))                                  # close bullet points
+    
+    if len(job["achievements"]) > 0: # add bullet points if any available
+            achievements = job["achievements"]
+            doc.append(NoEscape(r"""\begin{onecolentry} % achievements
+            \begin{highlights}"""))                                 # open bullet points
+            for bulletPoint in achievements:           
+                doc.append(NoEscape(r"""\item """ + bulletPoint))     # bullet point              
+            doc.append(NoEscape(r"""\end{highlights}    
+            \end{onecolentry}"""))                                  # close bullet points
+    
+    if len(job["description"]) > 0: # add bullet points if any available
+            description = job["description"]
+            doc.append(NoEscape(r"""\begin{onecolentry} % description
+            \begin{highlights}"""))                                 # open bullet points
+            for bulletPoint in description:           
+                doc.append(NoEscape(r"""\item """ + bulletPoint))     # bullet point              
+            doc.append(NoEscape(r"""\end{highlights}    
+            \end{onecolentry}"""))                                  # close bullet points
 
-    \vspace{0.10 cm}
 
-    \begin{onecolentry}
-        \begin{highlights}
-    """))
 
-        # Loop through highlights for each job
-        for highlight in job["highlights"]:
-            doc.append(NoEscape(r"        \item " + highlight + r" "))
+def add_projects(doc, projects): # Add the Experience section title
+    doc.append(NoEscape(r"\section{Projects}  % PROJECTS SECTION"))
 
-        doc.append(NoEscape(r"""
-        \end{highlights}
-    \end{onecolentry}
+    for project in projects["projects"]:
 
-    \vspace{0.2 cm}
-    """))
+        doc.append(NoEscape(r"""\begin{twocolentry}{
+            \textit{
+            """ + format_date(project["date"], "year") + r""" - \href{""" + project["link"] + r"""}{see project}
+            }}
+            \textbf{""" + project["title"] + r"""}
+        \end{twocolentry}
+
+        \vspace{0.10 cm}
+        \begin{onecolentry}
+            \begin{highlights}"""))
+        for bp in project["description"]:
+                doc.append(NoEscape(r"""\item """ + bp ))
+        
+        doc.append(NoEscape(r"""\end{highlights}
+        \end{onecolentry}"""))
+    
+def add_hard_skills(doc, skills): # Add the Experience section title
+    doc.append(NoEscape(r"\section{Hard Skills}  % HARD SKILLS"))
+
+    # Loop through the jobs and append their information
+    for skill_set in skills:
+        if skill_set["skills"] == "":
+            continue 
+
+        
+        doc.append(NoEscape(r"""\begin{onecolentry} % New Skill Set
+            \textbf{""" + skill_set["title"] + r""":} """ + escape_latex(skill_set["skills"]) + r"""
+        \end{onecolentry}
+        \vspace{0.2 cm}"""))
+
 
 def add_document_settings(doc, personal_information, today):
     doc.preamble.append(NoEscape(r"""
@@ -255,8 +487,8 @@ def add_document_settings(doc, personal_information, today):
         \LenToUnit{\paperwidth-2 cm-0.2 cm+0.05cm},
         \LenToUnit{\paperheight-1.0 cm}
     ){\vtop{{\null}\makebox[0pt][c]{
-        \small\color{gray}\textit{Last updated in """ + today + r"""}
-    }}}
+        \small\color{gray}\textit{""" + today + r"""}\hspace{\widthof{""" + today + r"""}}
+    }}}%
   }
 }%
 
@@ -304,7 +536,7 @@ def add_packages(doc, personal_information):
 
 def enable_ATS(doc):
     doc.preamble.append(NoEscape(r"""
-\ifPDFTeX
+\ifPDFTeX % making resume ATS readable
     \input{glyphtounicode}
     \pdfgentounicode=1
     % \usepackage[T1]{fontenc} % this breaks sb2nov
@@ -317,13 +549,138 @@ def enable_ATS(doc):
 
 
 
+# -----------------------------------------------------------------------------------
+# resume parts
+def add_new_section(doc, title):
+    add_division(doc)
+    doc.append(NoEscape("% "+ title))
+    add_division(doc)
+    doc.append(NoEscape(r"\section{" + title + "} %" + title.upper() + " SECTION" ))
+    doc.append(NoEscape(r"\label{section:" + title + "}" ))
 
+def add_division(doc):
+    doc.append(NoEscape(r"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"))
 
 # -----------------------------------------------------------------------------------
 # format fields
-def format_date(address):
-    print(address)
-    return f"{address["address"]}, {address["postal_code"]}, {address["state"]}"
+def format_address(address, format):
+    """
+    Formats the given date object into various formats.
+
+    Parameters
+    ----------
+    date : address
+        A dictionary containing "address", "postal_code", "country", "state"
+    format : str
+        The desired format for the output string. Possible values:
+        - "country"
+        - "state, country"
+        - "address, state"
+        - "address, postal code, state"
+    status : str
+        A string used to indicate that the dates don't apply
+
+    Returns
+    -------
+    str
+        The formatted address string.
+    """
+    if format == "country":
+        return f"{address["country"]}"
+    if format == "state, country":
+        return f"{address["state"]}, {address["country"]}"
+    if format == "address, state":
+        return f"{address["address"]}, {address["state"]}"
+    if format == "address, postal_code, state":
+        return f"{address["address"]}, {address["postal_code"]}, {address["state"]}"
+
+
+def format_name(name, format):
+    """
+    Formats the given date object into various formats.
+
+    Parameters
+    ----------
+    date : name
+        A dictionary containing "first_name", "middle_name", "last_name", "full_name", "preferred_name"
+    format : str
+        The desired format for the output string. Possible values:
+        - "preferred_name"
+        - "full"
+        - "last, first"
+        - "last, Middle_initial. first"
+        - "address, postal code, state"
+    status : str
+        A string used to indicate that the dates don't apply
+
+    Returns
+    -------
+    str
+        The formatted address string.
+    """
+    if format == "preferred_name":
+        return name["preferred_name"]
+    if format == "full":
+        return f" {name["full_name"]}"
+    if format == "last, first":
+        return f"{name["last_name"]}, {name["first_name"]}"
+    if format == "last, Middle_initial. first":
+        return f"{name["last_name"]}, {name["middle_name"][0].upper()}. {name["first_name"]}"
+
+
+
+def format_date(date: dict, format: str, status: str = "") -> str:
+    """
+    Formats the given date object into various formats.
+
+    Parameters
+    ----------
+    date : dict
+        A dictionary containing "year", "month", "day", and "season".
+    format : str
+        The desired format for the output string. Possible values:
+        - "yyyy-mm-dd"
+        - "mm-yy"
+        - "month year"
+        - "year"
+        - "season"
+    status : str
+        A string used to indicate that the dates don't apply
+
+    Returns
+    -------
+    str
+        The formatted date string.
+    """
+    if not status == "": # str i.e. "in progress"
+        return status
+    
+    year = date.get("year", "").strip()
+    month = date.get("month", "").strip()
+    day = date.get("day", "").strip()
+    season = date.get("season", "").strip()
+
+    if format == "yyyy-mm-dd":
+        return f"{year}-{month}-{day}".replace("--", "-").strip("-")
+
+    elif format == "mm-yy":
+        return f"{month}-{year}".strip("-")
+
+    elif format == "month year":
+        return f"{month} {year}".strip()
+
+    elif format == "year":
+        return year
+
+    elif format == "season":
+        return season.strip()
+
+    else:
+        raise ValueError("Invalid format specified")
+
+    
+def escape_latex(text: str):
+    return text.replace("#", r"\#")
 # -----------------------------------------------------------------------------------
 
 def produce_tex(doc, tex_file_dir, version_path, profile_name, version_name):
@@ -352,8 +709,10 @@ def generate_latex_with_pylatex(profile_json, version_path, profile_name, versio
 
     # document content
     add_header(doc, profile_json["personal_information"])
-    add_education(doc)
-    add_experience(doc)
+    add_education(doc, profile_json["education"], "Education")
+    add_experience(doc, profile_json["work_experience"])
+    add_hard_skills(doc, profile_json["hard_skills"])
+    add_projects(doc, profile_json["projects"])
 
     
     tex_file_dir = version_path + "/resume"

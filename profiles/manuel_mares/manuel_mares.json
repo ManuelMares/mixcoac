@@ -9,7 +9,7 @@
         },        
         "links": [
             {
-                "name": "personalWebsite",
+                "name": "manuelmares-108fc.web.app",
                 "link": "manuelmares-108fc.web.app",
                 "icon": "Link"
             },
@@ -24,7 +24,6 @@
                 "icon": "LinkedinIn"
             }
         ],
-        "website": "",
         "languages": [],
         "contact": {
             "emails": [
@@ -49,49 +48,68 @@
             "degree": "Bachelors of Mechanical Engineering",
             "institution": "Universidad Veracruzana",
             "country": "Mexico",
+            "starting_date": {
+                "year": "2014",
+                "month": "August",
+                "day": "1",
+                "season": "Fall"
+            },
             "graduation_date": {
                 "year": "2018",
                 "month": "June",
-                "day": "",
-                "season": " Spring"
+                "day": "31",
+                "season": "Spring"
             },
             "grade": "4.0",
-            "description": "",
-            "is_completed": "true"
-        },
-        {
-            "degree": "Masters in Computer Science",
-            "institution": "New Mexico State University",
-            "country": "United States",
-            "graduation_date": {
-                "year": "2025",
-                "month": "May",
-                "day": "",
-                "season": " Spring"
-            },
-            "grade": "4.0",
-            "description": "",
-            "is_completed": "true"
+            "description": [],
+            "status": ""
         },
         {
             "degree": "Google Tech-Exchange Program",
             "institution": "Google",
             "country": "United States",
+            "starting_date": {
+                "year": "2023",
+                "month": "January",
+                "day": "",
+                "season": "Spring"
+            },
             "graduation_date": {
                 "year": "2023",
                 "month": "May",
                 "day": "",
-                "season": " Spring"
+                "season": "Spring"
             },
             "grade": "4.0",
-            "description": "",
-            "is_completed": "true"
+            "description": [],
+            "status": ""
+        },
+        {
+            "degree": "Masters in Computer Science",
+            "institution": "New Mexico State University",
+            "country": "United States",
+            "starting_date": {
+                "year": "2022",
+                "month": "January",
+                "day": "15",
+                "season": "Spring"
+            },
+            "graduation_date": {
+                "year": "2025",
+                "month": "May",
+                "day": "13",
+                "season": "Spring"
+            },
+            "grade": "4.0",
+            "description": ["3.8 GPA", "Good student"],
+            "status": "in progress"
         }
     ],
     "work_experience": [
         {
             "job_title": "Research Assistantship at NMSU",
             "company": "New Mexico State University",
+            "location": "United States",
             "start_date": {
                 "year": "2022",
                 "month": "May",
@@ -102,19 +120,18 @@
                 "year": "",
                 "month": "",
                 "day": "",
-                "season": " Fall"
+                "season": " Fall",
+                "status": "in progress"
             },
-            "has_terminated": "false",
             "responsibilities": [
                 "Working in a federally funded project researching Smart Grids aimed to help stablish a communication protocol for resilience of the grid.",
                 "Created an experimental Chrome extension in JS for developers to test different browser configurations."
             ],
             "achievements":[
-                ""
+                "I made it here!",
+                "this is a second point"
             ],
-            "description":[
-
-            ],
+            "description":[],
             "contact": {
                 "supervisor": ["Dr. Roopa Vishwanathan"],
                 "phone_number": [""],
@@ -138,25 +155,34 @@
     ],
     "hard_skills": [
         {
-            "technologies": [],
-            "years_of_experience": ""
+            "skills": "Java, Js, Databases, ReactJs, API, Typescript",
+            "title": "2+ years of experience"
+        },
+        {
+            "skills": "Python, Pandas, Numpy, Sklearn, Pytorch, Matplotlib",
+            "title": "2+ years of experience"
+        },
+        {
+            "skills": "C#, C++, Chrome extensions",
+            "title": "1+ year of experience"
         }
     ],
     "projects": {
-        "websites": [],
+        "website": "https://manuelmares-108fc.web.app/",
         "summary": "",
         "projects": [
             {
-                "title": "",
-                "link": "",
+                "title": "Meets Participant's Manager",
+                "link": "https://chromewebstore.google.com/detail/meets-participants-manage/dhijdfaoedpfdaeggoocdclejichafac?hl=es&authuser=0",
                 "description": [
-                    ""
+                    "Extension for professors in Google meets. Uses local storage, modifies the interface, and produces cvs reports.",
+                    "Deployed as a Chrome extension with Js, html, css"
                 ],
                 "technologies": [
                     ""
                 ],                
                 "date": {
-                    "year": "",
+                    "year": "2023",
                     "month": "",
                     "day": "",
                     "season": " "

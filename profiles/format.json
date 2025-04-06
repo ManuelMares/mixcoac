@@ -10,18 +10,18 @@
         "summary": "",
         "links": [
             {
-                "name": "personalWebsite",
-                "link": "personalWebsite.com",
+                "name": "",
+                "link": "",
                 "icon": ""
             },
             {
-                "name": "github",
-                "link": "github.com",
+                "name": "",
+                "link": "",
                 "icon": ""
             },
             {
-                "name": "linkedin",
-                "link": "linkedin.com",
+                "name": "",
+                "link": "",
                 "icon": ""
             }
         ],
@@ -115,12 +115,12 @@
     ],
     "hard_skills": [
         {
-            "technologies": [],
-            "years_of_experience": ""
+            "skill_list": "",
+            "title": ""
         }
     ],
     "projects": {
-        "websites": [],
+        "website": "",
         "summary": "",
         "projects": [
             {

@@ -24,7 +24,7 @@
 %
 \definecolor{primaryColor}{RGB}{0, 79, 144}%
 
-\ifPDFTeX
+\ifPDFTeX % making resume ATS readable
     \input{glyphtounicode}
     \pdfgentounicode=1
     % \usepackage[T1]{fontenc} % this breaks sb2nov
@@ -120,8 +120,8 @@
         \LenToUnit{\paperwidth-2 cm-0.2 cm+0.05cm},
         \LenToUnit{\paperheight-1.0 cm}
     ){\vtop{{\null}\makebox[0pt][c]{
-        \small\color{gray}\textit{Last updated in 2025-03-31 10:44:28}
-    }}}
+        \small\color{gray}\textit{2025-04-06 16:42:22}\hspace{\widthof{2025-04-06 16:42:22}}
+    }}}%
   }
 }%
 
@@ -134,7 +134,7 @@
 %
 \begin{document}%
 \normalsize%
-
+ 
     \newcommand{\AND}{\unskip
         \cleaders\copy\ANDbox\hskip\wd\ANDbox
         \ignorespaces
@@ -144,122 +144,116 @@
     
     \placelastupdatedtext
     \begin{header}
-        \textbf{\fontsize{24 pt}{24 pt}\selectfont Manuel Mares}
+        \textbf{\fontsize{24 pt}{24 pt}\selectfont Mares Solano, M. Francisco}
 
         \vspace{0.3 cm}
 
-        \normalsize
-        \mbox{{\color{black}\footnotesize\faMapMarker*}\hspace*{0.13cm}507 Sweet Avenue, 88001, New Mexico}
-        \kern 0.25 cm%
-        \AND%
-        \kern 0.25 cm%
-        \mbox{\hrefWithoutArrow{mailto:manuelms@nmsu.edu}{\color{black}{\footnotesize\faEnvelope[regular]}\hspace*{0.13cm}manuelms@nmsu.edu}}%
-        \kern 0.25 cm%
-        \AND%
-        \kern 0.25 cm%
-        \mbox{\hrefWithoutArrow{tel:4237737734}{\color{black}{\footnotesize\faPhone*}\hspace*{0.13cm}4237737734}}%
+        \normalsize%
+\mbox{{\color{black}\footnotesize\faMapMarker*}\hspace*{0.13cm} New Mexico, United States} % New Address
+                    \kern 0.25 cm %%
+\AND%
+\mbox{\hrefWithoutArrow{mailto:manuelms@nmsu.edu}{\color{black}{\footnotesize\faEnvelope[regular]}\hspace*{0.13cm}manuelms@nmsu.edu}} % New email
+                    \kern 0.25 cm %%
+\AND%
+\mbox{\hrefWithoutArrow{tel:4237737734}{\color{black}{\footnotesize\faPhone*}\hspace*{0.13cm}4237737734}} % New phone number
+                    \kern 0.25 cm %%
+\AND%
 \kern 0.25 cm%
-            \AND
-            \kern 0.25 cm%
-            \mbox{\hrefWithoutArrow{manuelmares-108fc.web.app}{\color{black}{\footnotesize\faLink}\hspace*{0.13cm}personalWebsite}}%
+                        \mbox{\hrefWithoutArrow{manuelmares-108fc.web.app}{\color{black}{\footnotesize\faLink}\hspace*{0.13cm}manuelmares-108fc.web.app}} % new link
+                        \kern 0.25 cm%%
+\AND%
 \kern 0.25 cm%
-            \AND
-            \kern 0.25 cm%
-            \mbox{\hrefWithoutArrow{https://github.com/ManuelMares}{\color{black}{\footnotesize\faGithub}\hspace*{0.13cm}github}}%
+                        \mbox{\hrefWithoutArrow{https://github.com/ManuelMares}{\color{black}{\footnotesize\faGithub}\hspace*{0.13cm}github}} % new link
+                        \kern 0.25 cm%%
+\AND%
 \kern 0.25 cm%
-            \AND
-            \kern 0.25 cm%
-            \mbox{\hrefWithoutArrow{https://www.linkedin.com/in/francisco-manuel-mares-solano-124754122/}{\color{black}{\footnotesize\faLinkedinIn}\hspace*{0.13cm}linkedin}}%
+                        \mbox{\hrefWithoutArrow{https://www.linkedin.com/in/francisco-manuel-mares-solano-124754122/}{\color{black}{\footnotesize\faLinkedinIn}\hspace*{0.13cm}linkedin}} % new link
+                        \kern 0.25 cm%%
 \end{header}
-    \vspace{0.3 cm - 0.3 cm}
-    %
-\section{Education}%
-
-        \begin{twocolentry}{
-            \textit{Sept 2000 – May 2005}
-        }
-            \textbf{University of Pennsylvania}
-
-            \textit{BS in Computer Science}
+    \vspace{0.3 cm - 0.3 cm}    
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Education%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Education} %EDUCATION SECTION%
+\label{section:Education}%
+    %---- New Education----%
+    \begin{twocolentry}{ % start of double columns new Education%
+        May 2025%
+    } % end right column in double column new Education%
+        \textbf{New Mexico State University} \\ %
+        \textit{Masters in Computer Science}%
+    \end{twocolentry} % end of double column new Education%
+    \vspace{0.10 cm}%
+    %---- New Education----%
+    \begin{twocolentry}{ % start of double columns new Education%
+        May 2023%
+    } % end right column in double column new Education%
+        \textbf{Google} \\ %
+        \textit{Google Tech-Exchange Program}%
+    \end{twocolentry} % end of double column new Education%
+    \vspace{0.10 cm}%
+    %---- New Education----%
+    \begin{twocolentry}{ % start of double columns new Education%
+        June 2018%
+    } % end right column in double column new Education%
+        \textbf{Universidad Veracruzana} \\ %
+        \textit{Bachelors of Mechanical Engineering}%
+    \end{twocolentry} % end of double column new Education%
+    \vspace{0.10 cm}%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Experience%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Experience} %EXPERIENCE SECTION%
+\label{section:Experience}%
+ \begin{twocolentry}{ % new job
+        \textit{United States}
+        
+        \textit{May 2022 - in progress}
+    }
+        \textbf{Research Assistantship at NMSU}
+        
+        \textit{New Mexico State University}
+    \end{twocolentry}
+    \vspace{0.10 cm}%
+\begin{onecolentry} % responsibilities
+            \begin{highlights}%
+\item Working in a federally funded project researching Smart Grids aimed to help stablish a communication protocol for resilience of the grid.%
+\item Created an experimental Chrome extension in JS for developers to test different browser configurations.%
+\end{highlights}    
+            \end{onecolentry}%
+\begin{onecolentry} % achievements
+            \begin{highlights}%
+\item I made it here!%
+\item this is a second point%
+\end{highlights}    
+            \end{onecolentry}%
+\section{Hard Skills}  % HARD SKILLS%
+\begin{onecolentry} % New Skill Set
+            \textbf{2+ years of experience:} Java, Js, Databases, ReactJs, API, Typescript
+        \end{onecolentry}
+        \vspace{0.2 cm}%
+\begin{onecolentry} % New Skill Set
+            \textbf{2+ years of experience:} Python, Pandas, Numpy, Sklearn, Pytorch, Matplotlib
+        \end{onecolentry}
+        \vspace{0.2 cm}%
+\begin{onecolentry} % New Skill Set
+            \textbf{1+ year of experience:} C\#, C++, Chrome extensions
+        \end{onecolentry}
+        \vspace{0.2 cm}%
+\section{Projects}  % PROJECTS SECTION%
+\begin{twocolentry}{
+            \textit{
+            2023 - \href{https://chromewebstore.google.com/detail/meets-participants-manage/dhijdfaoedpfdaeggoocdclejichafac?hl=es&authuser=0}{see project}
+            }}
+            \textbf{Meets Participant's Manager}
         \end{twocolentry}
 
         \vspace{0.10 cm}
-
         \begin{onecolentry}
-            \begin{highlights}
-                \item GPA: 3.9/4.0 (\href{https://example.com}{a link to somewhere})
-                \item \textbf{Coursework:} Computer Architecture, Comparison of Learning Algorithms, Computational Theory
-            \end{highlights}
-        \end{onecolentry}
-        %
-
-        \begin{twocolentry}{
-            \textit{Sept 2005 – May 2009}
-        }
-            \textbf{Harvard University}
-
-            \textit{MS in Artificial Intelligence}
-        \end{twocolentry}
-
-        \vspace{0.10 cm}
-
-        \begin{onecolentry}
-            \begin{highlights}
-                \item GPA: 4.0/4.0 (\href{https://anotherexample.com}{a link to somewhere})
-                \item \textbf{Coursework:} Machine Learning, Neural Networks, Advanced Algorithms
-            \end{highlights}
-        \end{onecolentry}
-        %
-\section{Experience}%
-
-    \begin{twocolentry}{
-        \textit{Cupertino, CA}
-        
-        \textit{June 2005 – Aug 2007}
-    }
-        \textbf{Software Engineer}
-        
-        \textit{Apple}
-    \end{twocolentry}
-
-    \vspace{0.10 cm}
-
-    \begin{onecolentry}
-        \begin{highlights}
-    %
-        \item Reduced time to render user buddy lists by 75\% by implementing a prediction algorithm %
-        \item Integrated iChat with Spotlight Search by creating a tool to extract metadata from saved chat transcripts and provide metadata to a system-wide search database %
-        \item Redesigned chat file format and implemented backward compatibility for search %
-
-        \end{highlights}
-    \end{onecolentry}
-
-    \vspace{0.2 cm}
-    %
-
-    \begin{twocolentry}{
-        \textit{Redmond, WA}
-        
-        \textit{June 2003 – Aug 2003}
-    }
-        \textbf{Software Engineer Intern}
-        
-        \textit{Microsoft}
-    \end{twocolentry}
-
-    \vspace{0.10 cm}
-
-    \begin{onecolentry}
-        \begin{highlights}
-    %
-        \item Designed a UI for the VS open file switcher (Ctrl-Tab) and extended it to tool windows %
-        \item Created a service to provide gradient across VS and VS add-ins, optimizing its performance via caching %
-        \item Created a test case generation tool that creates random XML docs from XML Schema %
-        \item Automated the extraction and processing of large datasets from legacy systems using SQL and Perl scripts %
-
-        \end{highlights}
-    \end{onecolentry}
-
-    \vspace{0.2 cm}
-    %
+            \begin{highlights}%
+\item Extension for professors in Google meets. Uses local storage, modifies the interface, and produces cvs reports.%
+\item Deployed as a Chrome extension with Js, html, css%
+\end{highlights}
+        \end{onecolentry}%
 \end{document}
