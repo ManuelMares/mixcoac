@@ -1,0 +1,367 @@
+{
+    "personal_information": {
+        "name":{
+            "first_name": "Francisco",
+            "middle_name": "Manuel",
+            "last_name": "Mares Solano",
+            "full_name": "Francisco Manuel Mares Solano",
+            "preferred_name": "Manuel Mares"
+        },        
+        "links": [
+            {
+                "name": "manuelmares-108fc.web.app",
+                "url": "manuelmares-108fc.web.app",
+                "icon": "faLink"
+            },
+            {
+                "name": "github",
+                "url": "https://github.com/ManuelMares",
+                "icon": "faGithub"
+            },
+            {
+                "name": "linkedin",
+                "url": "https://www.linkedin.com/in/francisco-manuel-mares-solano-124754122/",
+                "icon": "faLinkedinIn"
+            }
+        ],
+        "languages": ["Español", "English"],
+        "contact": {
+            "emails": [
+                "manuelms@nmsu.edu",
+                "fmms@outlook.com"
+            ],
+            "phone_numbers": [
+                "4237737734"
+            ],
+            "addresses": [
+                {
+                    "address": "507 Sweet Avenue",
+                    "postal_code": "88001",
+                    "country": "US",
+                    "state": "NM"
+                }
+            ]
+        }
+    },
+    "education": [
+        {
+            "degree": "Bachelors of Mechanical Engineering",
+            "institution": "Universidad Veracruzana",
+            "country": "Mexico",
+            "start_date": {
+                "year": "2014",
+                "month": "August",
+                "day": "1",
+                "season": "Fall"
+            },
+            "end_date": {
+                "year": "2018",
+                "month": "June",
+                "day": "31",
+                "season": "Spring"
+            },
+            "grade": "4.0",
+            "description": [],
+            "status": ""
+        },
+        {
+            "degree": "Google Tech-Exchange Program",
+            "institution": "Google",
+            "country": "United States",
+            "start_date": {
+                "year": "2023",
+                "month": "January",
+                "day": "",
+                "season": "Spring"
+            },
+            "end_date": {
+                "year": "2023",
+                "month": "May",
+                "day": "",
+                "season": "Spring"
+            },
+            "grade": "4.0",
+            "description": [],
+            "status": ""
+        },
+        {
+            "degree": "Masters in Computer Science",
+            "institution": "New Mexico State University",
+            "country": "United States",
+            "start_date": {
+                "year": "2022",
+                "month": "January",
+                "day": "15",
+                "season": "Spring"
+            },
+            "end_date": {
+                "year": "2025",
+                "month": "May",
+                "day": "13",
+                "season": "Spring"
+            },
+            "grade": "4.0",
+            "description": ["3.8 GPA", "Good student"],
+            "status": "in progress"
+        }
+    ],
+    "work_experience": [
+        {
+            "job_title": "Research Assistantship at NMSU",
+            "company": "New Mexico State University",
+            "location": "New Mexico, US",
+            "start_date": {
+                "year": "2022",
+                "month": "May",
+                "day": "",
+                "season": "Fall"
+            },
+            "end_date": {
+                "year": "2025",
+                "month": "May",
+                "day": "31",
+                "season": "Spring"
+            },
+            "status": "",
+            "responsibilities": [
+                "Working in a federally funded project researching Smart Grids aimed to help stablish a communication protocol for resilience of the grid.",
+                "Working on blockchain",
+                "Collaborated on the development of a safe protocol for blockchain communication"
+            ],
+            "achievements":[
+                "I made it here!",
+                "this is a second point"
+            ],
+            "description":[],
+            "contact": {
+                "supervisor": ["Dr. Roopa Vishwanathan"],
+                "phone_number": [""],
+                "email": ""
+            }
+        },
+        {
+            "job_title": "SWE Intern at Google Cloud",
+            "company": "Google",
+            "location": "California, US",
+            "start_date": {
+                "year": "2024",
+                "month": "May",
+                "day": "28",
+                "season": " Summer"
+            },
+            "end_date": {
+                "year": "2024",
+                "month": "August",
+                "day": "28",
+                "season": "Summer",
+                "status": ""
+            },
+            "status": "",
+            "responsibilities": [
+                "Build dashboard to analyze errors in Network Allocation.",
+                "Implemented flow allocation error detection pipeline.",
+                "Proposed and implemented metrics to evaluate network congestion."
+            ],
+            "achievements":[
+            ],
+            "description":[],
+            "contact": {
+                "supervisor": ["Amir Farhat"],
+                "phone_number": [""],
+                "email": ""
+            }
+        }
+    ],
+    "certifications": [
+        {
+            "name": "",
+            "organization": "",
+            "location": "",
+            "description": "",
+            "date": {
+                "year": "",
+                "month": "",
+                "day": "",
+                "season": " "
+            }
+        }
+    ],
+    "hard_skills": [
+        {
+            "skills": "Java, Js, SQL Databases, ReactJs, API, Typescript",
+            "title": "2+ years of experience"
+        },
+        {
+            "skills": "Python, Pandas, Numpy, Sklearn, Pytorch, Matplotlib",
+            "title": "2+ years of experience"
+        },
+        {
+            "skills": "C#, C++, Chrome extensions",
+            "title": "1+ year of experience"
+        }
+    ],
+    "projects": [
+        {
+            "title": "Meets Participant's Manager",
+            "link": {
+                "name": "Landing page",
+                "url": "https://meetsparticipantsmanager.wordpress.com/",
+                "icon": "Link"
+            },
+            "description": [
+                "Extension for professors in Google meets. Uses local storage, modifies the interface, and produces cvs reports.",
+                "Developed for Google Tech-exchange program."
+            ], 
+            "technologies": "Chrome extension MV3, Js, html, css",
+            "date": {
+                "year": "2023",
+                "month": "December",
+                "day": "01",
+                "season": "Fall"
+            }
+        },
+        {
+            "title": "ICCC Website",
+            "link": {
+                "name": "Website",
+                "url": "https://iccc-nmsu.web.app/",
+                "icon": "Link"
+            },
+            "description": [
+                "Official website for the ICCC club at NMSU.",
+                "Provides users, non-SQL DB, file management system, email response system."
+            ],               
+            "technologies": "ReactJs, Tailwind, React-routing, Firebase",
+            "date": {
+                "year": "2022",
+                "month": "May",
+                "day": "01",
+                "season": "Spring"
+            }
+        },
+        {
+            "title": "Wikipages",
+            "link": {
+                "name": "Youtube demo",
+                "url": "https://www.youtube.com/watch?v=rCREHw7i_sw",
+                "icon": "Link"
+            },
+            "description": [
+                "Website replica of wikipedia for videogames and music",
+                "Implemented full project, including unitary test, integration tests, and continuous integration."
+            ],       
+            "technologies": "Google Cloud, Python, Flask, Jinja2, Bulma, HTML, JS, APIs",        
+            "date": {
+                "year": "2022",
+                "month": "May",
+                "day": "01",
+                "season": "Spring"
+            }
+        },
+        {
+            "title": "Browser-in-Browser",
+            "link": {
+                "name": "",
+                "url": "",
+                "icon": "Link"
+            },
+            "description": [
+                "Chrome extension for web development research developed for NMSU cybersecurity lab.",
+                "Offered a Google Chrome replica inside Chrome as HTML nodes for fast development of new tools."
+            ],           
+            "technologies": "Chrome extension manifest v3, html, js, css.",   
+            "date": {
+                "year": "2022",
+                "month": "May",
+                "day": "01",
+                "season": "Spring"
+            }
+        },
+        {
+            "title": "Algol to MIPS Compiler",
+            "link": {
+                "name": "Youtube demo",
+                "url": "https://youtu.be/l7aXlA7MH5o",
+                "icon": "Link"
+            },
+            "description": [
+                "Build a compiler in C++ for Algol",
+                "Offers data type validation, function calls, interface implementations, write and read methods, and logical operations."
+            ],         
+            "technologies": "Lex, Yac, C, C++",     
+            "date": {
+                "year": "2022",
+                "month": "May",
+                "day": "01",
+                "season": "Spring"
+            }
+        },
+        {
+            "title": "AI Searcher",
+            "link": {
+                "name": "Youtube demo",
+                "url": "https://youtu.be/Ss1K-DYZ2sI",
+                "icon": "Link"
+            },
+            "description": [
+                "A greedy best first search algorithm for the English language",
+                "Build algorithms using BFS with greedy heuristics to lexically classify sentences."
+            ],        
+            "technologies": "Python, Javascript, HTML, CSS",   
+            "date": {
+                "year": "2022",
+                "month": "May",
+                "day": "01",
+                "season": "Spring"
+            }
+        },
+        {
+            "title": "TTS software",
+            "link": {
+                "name": "",
+                "url": "",
+                "icon": "Link"
+            },
+            "description": [
+                "Experimental text-to-speech software for people with muscle impairments.",
+                "Currently in testing phase."
+            ],       
+            "technologies": "Eel, Python, React, Typescript, Chakra-UI.",       
+            "date": {
+                "year": "2022",
+                "month": "May",
+                "day": "01",
+                "season": "Spring"
+            }
+        }
+    ],
+    "publications": [
+        {
+            "title": "",
+            "reference": "",
+            "year": "",
+            "description": ""
+        }
+    ],
+    "references": [
+        {
+            "name": "",
+            "relationship": "",
+            "contact": ""
+        }
+    ],
+    "extracurricular": [
+        {
+            "title": "",
+            "description": [
+                ""
+            ],                
+            "date": {
+                "year": "",
+                "month": "",
+                "day": "",
+                "season": " "
+            }
+        }
+    ]
+}

@@ -1,0 +1,1 @@
+uvicorn main:mixcoac --reload --reload-include="*.css"

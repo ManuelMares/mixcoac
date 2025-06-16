@@ -1,0 +1,107 @@
+
+<section class="right-menu">
+    <div class="profile-data-content">
+        
+        <h1>Personal Information</h1>
+        {% for key, value in personal_information.items() %} 
+            <div>
+                {% if key == "name" %}
+                <div>
+                    <h2>{{key}}</h2>
+                    <div class="form-field">
+                        <label>First Name:</label>
+                        <input 
+                        type="text" id="first_name" placeholder="First Name" 
+                        value="{{value['first_name']}}"
+                        >
+                    </div>
+                    
+                    <div class="form-field">
+                        <label>Middle Name:</label>
+                        <input 
+                        type="text" id="middle_name" placeholder="Middle Name" 
+                        value="{{value['middle_name']}}"
+                        >
+                    </div>
+                        
+                    <div class="form-field">
+                        <label>last_name:</label>
+                        <input 
+                        type="text" id="last_name" placeholder="Last Name" 
+                        value="{{value['last_name']}}"
+                        >
+                    </div>
+                    
+                    <div class="form-field">
+                        <label>full_name:</label>
+                        <input 
+                        type="text" id="full_name" placeholder="Full Name" 
+                        value="{{value['full_name']}}"
+                        >
+                    </div>
+                    
+                    <div class="form-field">
+                        <label>preferred_name:</label>
+                        <input 
+                        type="text" id="preferred_name" placeholder="Preferred Name" 
+                        value="{{value['preferred_name']}}"
+                        >
+                    </div>
+                </div>
+
+                {% elif key == "links" %}
+                <div> 
+                    <h2> {{key}} </h2>
+                    {% for link in value %}
+                        <div class="links-container">
+                            <div class="link-field">
+                                <label>Name</label>
+                                <input
+                                    name="link_name"
+                                    type="text" placeholder="Where to (visible)"
+                                    value="{{link['name']}}"
+                                >
+                            </div>
+                            <div class="link-field">
+                                <label>Url</label>
+                                
+                                <input
+                                    name="link_url"
+                                    type="text" placeholder="Add a link (invisible)"
+                                    value="{{link['url']}}"
+                                >
+                            </div>
+                            <div class="link-field">
+                                <label>Icon</label>
+                                <select name="icon" id="icon">
+                                    {% set options = ["faEnvelope", "faPhone", "faLink", "faGithub", "faLinkedinIn"] %}
+                                    {% for option in options %}
+                                    <option value="{{option}}" {% if option == link["icon"] %}selected{% endif %}>
+                                            {{option}}
+                                    </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <button id="add-link">Add link</button>
+                </div>
+
+
+
+                {% elif key == "languages" %}
+                <div> Languages </div>
+
+                {% else %}
+                <div> Contact </div>
+                {% endif %}
+            </div>
+        {% endfor %}
+        
+    </div>
+    <div class="profile-data-footer">
+        <button>Discard</button>
+        <button>Save Changes</button>
+
+    </div>
+</section>

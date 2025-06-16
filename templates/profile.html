@@ -1,0 +1,77 @@
+<div class="profile-page">
+    <!-- Left side (menu) -->
+    <section class="left-panel">
+        <!-- Profile title -->
+        <div class="flex bg-blue-2">
+            <button 
+                hx-get="/profiles"
+                hx-target="#body"
+                hx-swap="innerHTML"
+                hx-push-url="true"
+                class="round-button"
+            >
+                <img 
+                    src="/static/icons/left_white.png" 
+                    alt="Previous Page" 
+                    class="button-icon"
+                >
+            </button>
+            <h1>{{profile_name}}</h1>
+        </div>
+        <!-- Resume List -->
+        <section class="resumes-list">
+            <!-- Resumes control menu -->
+            <div class="resume-menu">
+                <!-- Button: my profile data -->
+                <button
+                    hx-get="/profiles/{{profile_name}}/profile_data"
+                    hx-target="#right-panel"
+                    hx-swap="innerHTML"
+                    hx-push-url="true"
+                    class="resume-button"
+                >
+                    <img 
+                        src="/static/icons/settings_white.png" 
+                        alt="Settings Icon" 
+                        class="button-icon"
+                    >
+                    Profile Data
+                </button>
+                <div class="flex">
+                    <button class="round-button">
+                        <img 
+                        src="/static/icons/refresh_white.png" 
+                        alt="Refresh List" 
+                        class="button-icon"
+                        >
+                    </button>
+                    <button class="round-button">
+                        <img 
+                        src="/static/icons/new_file.png" 
+                        alt="New file" 
+                        class="button-icon"
+                        >
+                    </button>
+                </div>
+            </div>
+
+            <!-- Display list of resumes -->
+            {% for name in resume_names %}
+                <button class="resume-button">
+                    <img 
+                        src="/static/icons/file_white.png" 
+                        alt="File Icon" 
+                        class="button-icon"
+                    >
+                    {{ name }}
+                </button>
+            {% endfor %}
+        </section>
+    </section>
+
+
+    <!-- Right side (content) -->
+    <div class="right-panel" id="right-panel">
+        
+    </div>
+</div>

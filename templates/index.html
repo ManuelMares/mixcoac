@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mixcoac</title>
+    <script src="https://unpkg.com/htmx.org@latest"></script>
+    <link rel="stylesheet" href="/static/styles.css">
+
+</head>
+<body id="body">
+    <div class="main">
+        
+        <h1>
+            {{message}}
+        </h1>
+
+        <section class="profiles_container">  
+            {% for profile_id in profile_names %}     
+            <div class="profile_card">
+                <button class="button blue-button grid-area-user"
+                    hx-get="/profiles/{{profile_id}}"
+                    hx-target="#body"
+                    hx-swap="innerHTML"
+                    hx-push-url="true"
+                >
+                    {{profile_id}}
+                </button>
+                <button class="button orange-button grid-area-edit">
+                    Edit
+                </button>
+                <button class="button red-button grid-area-delete">
+                    Delete
+                </button>
+            </div>
+            {% endfor %}
+        </section>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
