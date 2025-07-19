@@ -7,11 +7,11 @@
                 hx-get="/profiles"
                 hx-target="#body"
                 hx-swap="innerHTML"
-                hx-push-url="true"
+                hx-push-url="true"s
                 class="round-button"
             >
                 <img 
-                    src="/static/icons/left_white.png" 
+                    src="/static/icons/left_white.svg" 
                     alt="Previous Page" 
                     class="button-icon"
                 >
@@ -31,23 +31,23 @@
                     class="resume-button"
                 >
                     <img 
-                        src="/static/icons/settings_white.png" 
+                        src="/static/icons/gear_white.svg" 
                         alt="Settings Icon" 
                         class="button-icon"
                     >
                     Profile Data
                 </button>
                 <div class="flex">
-                    <button class="round-button">
+                    <button class="button-circle">
                         <img 
-                        src="/static/icons/refresh_white.png" 
+                        src="/static/icons/refresh2_white.svg" 
                         alt="Refresh List" 
                         class="button-icon"
                         >
                     </button>
-                    <button class="round-button">
+                    <button class="button-circle">
                         <img 
-                        src="/static/icons/new_file.png" 
+                        src="/static/icons/newFile_white.svg" 
                         alt="New file" 
                         class="button-icon"
                         >
@@ -59,7 +59,7 @@
             {% for name in resume_names %}
                 <button class="resume-button">
                     <img 
-                        src="/static/icons/file_white.png" 
+                        src="/static/icons/file_white.svg" 
                         alt="File Icon" 
                         class="button-icon"
                     >

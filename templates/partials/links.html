@@ -1,0 +1,61 @@
+
+<div id="links"> 
+        {% for link in links %}
+            <div class="links-container" >
+                <input type="hidden" name="delete_index" value="{{ loop.index0 }}">
+
+
+                <div class="link-field">
+                    <label>Name</label>
+                    <input
+                        name="link_name"
+                        type="text" placeholder="Where to (visible)"
+                        value="{{link['name']}}"
+                    >
+                </div>
+                <div class="link-field">
+                    <label>Url</label>
+                    
+                    <input
+                        name="link_url"
+                        type="text" placeholder="Add a link (invisible)"
+                        value="{{link['url']}}"
+                    >
+                </div>
+                <div class="link-field">
+                    <label>Icon</label>
+                    <select name="icon" id="icon">
+                        {% set options = ["faEnvelope", "faPhone", "faLink", "faGithub", "faLinkedinIn"] %}
+                        {% for option in options %}
+                        <option value="{{option}}" {% if option == link["icon"] %}selected{% endif %}>
+                                {{option}}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <button
+                    class="button-circle bg-red"
+                    hx-post="/remove-link"
+                    hx-target="#links"
+                    hx-swap="innerHTML"
+                    hx-include = "#links input, #links select"
+                >
+                    <img 
+                        src="/static/icons/trashcan_white.svg" 
+                        alt="Settings Icon" 
+                        class="button-icon"
+                    >
+                </button>
+            </div>
+        {% endfor %}
+    <button 
+        class="button-inner"
+        id="add-link"
+        hx-post="/add-profile-links"
+        hx-target="#links"
+        hx-swap="innerHTML"
+        hx-include = "#links input, #links select"
+    >
+        Add link
+    </button>
+</div>

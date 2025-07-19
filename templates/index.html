@@ -21,7 +21,7 @@
                 <button class="button blue-button grid-area-user"
                     hx-get="/profiles/{{profile_id}}"
                     hx-target="#body"
-                    hx-swap="innerHTML"
+                    hx-swap="outerHTML"
                     hx-push-url="true"
                 >
                     {{profile_id}}

@@ -1,0 +1,37 @@
+
+<div id="links"> 
+        {% for language in languages %}
+            <div class="languages-container" >
+                <input type="hidden" name="delete_index" value="{{ loop.index0 }}">
+
+                <input
+                    name="language"
+                    type="text" placeholder="Add a link (invisible)"
+                    value="{{language}}"
+                >
+                <button
+                    class="button-circle bg-red"
+                    hx-post="/remove-link"
+                    hx-target="#links"
+                    hx-swap="innerHTML"
+                    hx-include = "#links input, #links select"
+                >
+                    <img 
+                        src="/static/icons/trashcan_white.svg" 
+                        alt="Settings Icon" 
+                        class="button-icon"
+                    >
+                </button>
+            </div>
+        {% endfor %}
+    <button 
+        class="button-inner"
+        id="add-link"
+        hx-post="/add-profile-links"
+        hx-target="#links"
+        hx-swap="innerHTML"
+        hx-include = "#links input, #links select"
+    >
+        Add link
+    </button>
+</div>

@@ -33,6 +33,54 @@ body{
     margin: 0;
     padding: 0;
 }
+.button-circle{
+    border-radius: 50%;
+    width: 3rem;
+    height: 3rem;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.bg-blue{
+    background-color: var(--blue);
+}
+    .bg-blue:active{
+        background-color: var(--blueActive);
+    }
+    .bg-blue:hover{
+        background-color: var(--blueHover);
+    }
+.bg-red{
+    background-color: var(--red);
+}
+    .bg-red:active{
+        background-color: var(--redActive);
+    }
+    .bg-red:hover{
+        background-color: var(--redHover);
+    }
+.bg-white{
+    background-color: var(--white);
+}
+    .bg-white:active{
+        background-color: var(--whiteActive);
+    }
+    .bg-white:hover{
+        background-color: var(--whiteHover);
+    }
+
+
+
+
+
+
+
+
+
+
+
 .main{
     box-sizing: border-box; 
     height: 100%;
@@ -349,3 +397,57 @@ button{
     cursor: pointer;
     background-color: var(--blueActive);
     }
+
+
+
+/* ============================================================================ */
+/* Personal information */
+/* ============================================================================ */
+.profile-data-content{
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.profile-data-content-nav{
+    width: 90%;
+    flex-shrink: 1;
+    background-color: var(--blue);
+    border-radius: 10px;
+    color:white;
+    ul{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        flex-direction: row;
+        list-style-type: none;
+    }
+    button{
+        width: fit-content;
+        /* background-color: white; */
+    }
+}
+.profile-data-content-content{
+    width: 100%;
+    height: -webkit-fill-available;
+    flex-grow: 1;
+}
+.profile-data-footer{
+    width: 100%;
+    flex-shrink: 1;
+
+}
+.selected{
+    background-color: white;
+    color: var(--black);
+}
+.button-inner{
+    width: 100%;
+    background-color: var(--whiteHover);
+    font-weight: bold;
+    color: white;
+}
